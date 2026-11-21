@@ -1,32 +1,36 @@
+from dotenv import load_dotenv
 from telethon import TelegramClient
 from telethon import errors
 from telethon.tl.types import InputMessagesFilterVideo
 from telethon.tl.types import InputMessagesFilterPhotos
 from telethon.tl.types import InputMessagesFilterDocument
+import os
 
-api_id = ""
-api_hash = ""
+load_dotenv()
+
+api_id = os.getenv("API_ID")
+api_hash = os.getenv("API_HASH")
 client = TelegramClient("anon", api_id, api_hash)
+
+videoFilter = InputMessagesFilterVideo
+photoFilter = InputMessagesFilterPhotos
+filesFilter = InputMessagesFilterDocument
 
 
 async def downloadVideos(chat_id):
-    async for message in client.iter_messages(chat_id, filter=InputMessagesFilterVideo):
+    async for message in client.iter_messages(chat_id, filter=videoFilter):
         path = await message.download_media()
         print("File saved to", path)
 
 
 async def downloadPhotos(chat_id):
-    async for message in client.iter_messages(
-        chat_id, filter=InputMessagesFilterPhotos
-    ):
+    async for message in client.iter_messages(chat_id, filter=photoFilter):
         path = await message.download_media()
         print("File saved to", path)
 
 
 async def downloadFiles(chat_id):
-    async for message in client.iter_messages(
-        chat_id, filter=InputMessagesFilterDocument
-    ):
+    async for message in client.iter_messages(chat_id, filter=filesFilter):
         path = await message.download_media()
         print("File saved to", path)
 
