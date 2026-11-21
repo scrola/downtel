@@ -40,6 +40,7 @@ async def downloadAll(chat_id):
 try:
 
     async def main():
+        chatId = int(input("Digite o ID do canal/grupo: "))
         print("1) Fotos\n" "2) Vídeos\n" "3) Arquivos\n" "4) Tudo\n")
         optionList = list(
             map(
@@ -50,7 +51,6 @@ try:
             )
         )
 
-        chatId = int(input("Digite o ID do canal/grupo: "))
         if 1 in optionList:
             await downloadPhotos(chatId)
         if 2 in optionList:
@@ -59,6 +59,9 @@ try:
             await downloadFiles(chatId)
         if 4 in optionList:
             await downloadAll(chatId)
+        else:
+            print("Opção inválida. Tente novamente.")
+            return
 
 except errors.FloodWaitError as e:
     print("Flood for", e.seconds)
