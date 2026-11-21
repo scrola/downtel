@@ -41,24 +41,23 @@ try:
 
     async def main():
         print("1) Fotos\n" "2) Vídeos\n" "3) Arquivos\n" "4) Tudo\n")
-        option = list(map(int, input("Digite a(s) opção(es) desejada(s): ").split()))
+        optionList = list(
+            map(
+                int,
+                input(
+                    "Digite a(s) opção(es) desejada(s) separadas por espaço: "
+                ).split(),
+            )
+        )
+
         chatId = int(input("Digite o ID do canal/grupo: "))
-        if option[0] == 1:
+        if 1 in optionList:
             await downloadPhotos(chatId)
-        elif option[0] == 2:
+        if 2 in optionList:
             await downloadVideos(chatId)
-        elif option[0] == 3:
+        if 3 in optionList:
             await downloadFiles(chatId)
-        elif option[0] == 1 and option[1] == 2 or option[0] == 2 and option[1] == 1:
-            await downloadPhotos(chatId)
-            await downloadVideos(chatId)
-        elif option[0] == 2 and option[1] == 3 or option[0] == 3 and option[1] == 2:
-            await downloadFiles(chatId)
-            await downloadVideos(chatId)
-        elif option[0] == 1 and option[2] == 3 or option[0] == 3 and option[1] == 3:
-            await downloadPhotos(chatId)
-            await downloadFiles(chatId)
-        elif option[0] == 4:
+        if 4 in optionList:
             await downloadAll(chatId)
 
 except errors.FloodWaitError as e:
