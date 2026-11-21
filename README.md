@@ -31,14 +31,12 @@ Your `.env` file may look like this:
 ```
 API_ID = 11111111
 API_HASH = "1kshwll2n39smjwdh27jlsha1ksw9a21"
-
 ```
 
 #### Run the script with
 
 ```
 python3 main.py
-
 ```
 
 The script will require your phone number and the code sent on your Telegram. The phone number format must be like: +5500000000000, that is, your country code, the regional code and the rest of the number.
