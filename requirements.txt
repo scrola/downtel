@@ -1,2 +1,2 @@
-telethon
-dotenv
+Telethon==1.46.0
+dotenv==0.9.9
